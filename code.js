@@ -29,6 +29,7 @@ document.getElementById("langToggle").addEventListener("click", () => {
     document.getElementById("lastLabel").innerText = "تاريخ آخر نظارة:";
     document.getElementById("checkBtn").innerText = "✔️ تحقق";
     document.getElementById("resetBtn").innerText = "🔄 إعادة ضبط";
+    updateDateTime();
   } else {
     currentLang = "en";
     htmlTag.setAttribute("dir", "ltr");
@@ -38,6 +39,7 @@ document.getElementById("langToggle").addEventListener("click", () => {
     document.getElementById("lastLabel").innerText = "Last Glasses Date:";
     document.getElementById("checkBtn").innerText = "✔️ CHECK";
     document.getElementById("resetBtn").innerText = "🔄 RESET";
+    
   }
 });
 
@@ -48,6 +50,19 @@ function showSpinner() {
 }
 function hideSpinner() {
   document.getElementById("spinner").classList.add("hidden");
+}
+function formatDate(date) {
+  const day = String(date.getDate()).padStart(2, "0");
+
+  const months = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
+
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+
+  return `${day}-${month}-${year}`;
 }
 
 // Eligibility calculation
@@ -63,11 +78,9 @@ function calculateEligibility() {
   if (!policyStartInput || !cycleRuleInput) {
     output.innerHTML = `<div class="result-not"><h2>⚠️ ${
       currentLang === "ar" ? "خطأ" : "Error"
-    }</h2><p>${
-      currentLang === "ar"
-        ? "من فضلك أدخل تاريخ بداية البوليصة ودورة الاستحقاق."
-        : "Please fill in Policy Start Date and Cycle Rule."
-    }</p></div>`;
+    }</h2><p>${currentLang === "ar" ? "بداية البوليصة" : "Policy Start"}: ${formatDate(policyStart)}</p>
+
+<p>${currentLang === "ar" ? "تاريخ الاستحقاق القادم" : "Next Eligible Date"}: ${formatDate(nextEligibleDate)}</p></div>`;
     return;
   }
 
@@ -131,3 +144,35 @@ function calculateEligibility() {
     </div>
   `;
 }
+// ===============================
+// Live Date & Time
+// ===============================
+function updateDateTime() {
+  const now = new Date();
+
+  const options = {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  };
+
+  const dateTimeElement = document.getElementById("dateTime");
+
+  if (dateTimeElement) {
+    dateTimeElement.textContent = now.toLocaleString(
+      currentLang === "ar" ? "ar-EG" : "en-US",
+      options
+    );
+  }
+}
+
+// تشغيل أول مرة
+updateDateTime();
+
+// تحديث كل ثانية
+setInterval(updateDateTime, 1000);
+

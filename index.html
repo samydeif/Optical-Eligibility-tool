@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-  <img src="metlife-1-logo-.png" alt="MetLife Logo" class="logo">
+  <<header>
+  <img src="metlife_logo.jpg" alt="MetLife Logo" class="logo">
 
   <h1 id="title">
     <span class="glasses-icon">👓</span>
@@ -16,6 +16,9 @@
   </h1>
 
   <div class="controls">
+
+    <span id="dateTime" class="datetime"></span>
+
     <button id="langToggle" class="icon-btn">
       <i class="fa-solid fa-globe"></i>
     </button>
@@ -23,21 +26,22 @@
     <button id="modeToggle" class="icon-btn">
       <i class="fa-solid fa-moon"></i>
     </button>
+
   </div>
 </header>
 
   <main>
     <section class="input-section">
-      <label id="policyLabel">Policy Start Date:
+      <label id="policyLabel">📋 Policy Start Date:
         <input type="date" id="policyStart">
       </label>
-      <label id="cycleLabel">Cycle Rule (years):
+      <label id="cycleLabel">📅 Cycle Rule (years):
         <select id="cycleRule">
           <option value="1">1</option>
           <option value="2">2</option>
         </select>
       </label>
-      <label id="lastLabel">Last Glasses Date:
+      <label id="lastLabel">👓 Last Glasses Date:
         <input type="date" id="lastGlasses">
       </label>
       <div class="buttons">
@@ -50,6 +54,10 @@
       <div id="spinner" class="loader hidden"></div>
     <div id="spinner" class="spinner hidden"></div>
   </main>
+  <footer class="footer">
+   <p>MetLife Egypt | Internal Use Only</p>
+   <p>Version 1.0</p>
+  </footer>
 
   <script src="code.js"></script>
 </body>
