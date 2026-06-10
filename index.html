@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>MetLife Glasses Eligibility Tool</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+  <img src="metlife-1-logo-.png" alt="MetLife Logo" class="logo">
+
+  <h1 id="title">
+    <span class="glasses-icon">👓</span>
+    Glasses Eligibility Tool
+  </h1>
+
+  <div class="controls">
+    <button id="langToggle" class="icon-btn">
+      <i class="fa-solid fa-globe"></i>
+    </button>
+
+    <button id="modeToggle" class="icon-btn">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+  </div>
+</header>
+
+  <main>
+    <section class="input-section">
+      <label id="policyLabel">Policy Start Date:
+        <input type="date" id="policyStart">
+      </label>
+      <label id="cycleLabel">Cycle Rule (years):
+        <select id="cycleRule">
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
+      </label>
+      <label id="lastLabel">Last Glasses Date:
+        <input type="date" id="lastGlasses">
+      </label>
+      <div class="buttons">
+        <button id="checkBtn">✔️ CHECK</button>
+        <button id="resetBtn">🔄 RESET</button>
+      </div>
+    </section>
+
+    <section class="output-section" id="output"></section>
+      <div id="spinner" class="loader hidden"></div>
+    <div id="spinner" class="spinner hidden"></div>
+  </main>
+
+  <script src="code.js"></script>
+</body>
+</html>

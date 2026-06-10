@@ -1,0 +1,22 @@
+{
+  "colors": {
+    "primary": "#0077c8",
+    "secondary": "#00a9e0",
+    "backgroundLight": "#ffffff",
+    "backgroundDark": "#121212",
+    "textLight": "#333333",
+    "textDark": "#f0f0f0",
+    "eligible": "#4CAF50",
+    "notEligible": "#F44336"
+  },
+  "fonts": {
+    "main": "Arial, sans-serif",
+    "heading": "Segoe UI, sans-serif"
+  },
+  "spacing": {
+    "small": "8px",
+    "medium": "16px",
+    "large": "24px"
+  },
+  "borderRadius": "8px"
+}
