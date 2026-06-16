@@ -1,64 +1,250 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <title>MetLife Glasses Eligibility Tool</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MetLife Glasses Eligibility Tool</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Flatpickr -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <<header>
-  <img src="metlife_logo.jpg" alt="MetLife Logo" class="logo">
 
-  <h1 id="title">
-    <span class="glasses-icon">👓</span>
-    Glasses Eligibility Tool
-  </h1>
+    <!-- HEADER -->
+    <header>
 
-  <div class="controls">
+        <img src="metlife_logo.jpg"
+             alt="MetLife Logo"
+             class="logo">
 
-    <span id="dateTime" class="datetime"></span>
+        <h1 id="title">
+            <span class="glasses-icon">👓</span>
+            Glasses Eligibility Tool
+        </h1>
+        
+        <div id="agentInfo"
+           class="agent-info hidden">
+         </div>
 
-    <button id="langToggle" class="icon-btn">
-      <i class="fa-solid fa-globe"></i>
-    </button>
 
-    <button id="modeToggle" class="icon-btn">
-      <i class="fa-solid fa-moon"></i>
+        
+
+            <!-- Live Date Time -->
+     <div class="controls">
+
+      <div id="dateTime"
+         class="datetime-box">
+     </div>
+
+     <button id="langToggle"
+            class="icon-btn"
+            title="Language">
+        <i class="fa-solid fa-globe"></i>
+     </button>
+
+      <button id="modeToggle"
+            class="icon-btn"
+            title="Dark Mode">
+        <i class="fa-solid fa-moon"></i>
+        </button>
+
+       </div>
+        
+    </header>
+    
+
+    <!-- MAIN -->
+    <main>
+
+        <section class="input-section">
+
+            <!-- Policy Start -->
+
+            <label id="policyLabel">
+                Policy Start Date
+
+                <input
+                    type="text"
+                    id="policyStart"
+                    placeholder="DD/MM/YYYY">
+            </label>
+
+            <!-- Cycle -->
+
+            <label id="cycleLabel">
+                Cycle Rule (Years)
+
+                <select id="cycleRule">
+
+                    <option value="">
+                        Select Cycle
+                    </option>
+
+                    <option value="1">
+                        1 Year
+                    </option>
+
+                    <option value="2">
+                        2 Years
+                    </option>
+
+                </select>
+
+            </label>
+
+            <!-- Last Glasses -->
+
+            <label id="lastLabel">
+                Last Glasses Date
+
+                <input
+                    type="text"
+                    id="lastGlasses"
+                    placeholder="DD/MM/YYYY">
+            </label>
+
+            <!-- Buttons -->
+
+            <div class="buttons">
+
+                <button id="checkBtn">
+                    ✔️ CHECK
+                </button>
+
+                <button id="resetBtn">
+                    🔄 RESET
+                </button>
+               <!--  <button id="exportPdfBtn">
+                    📄 Export Report
+                 </button>  -->
+
+            </div>
+
+        </section>
+
+        <!-- OUTPUT -->
+
+        <section id="output"
+                 class="output-section">
+        </section>
+
+        <!--<section id="auditSection"
+         class="output-section hidden">
+          <h3>Calculation Details</h3>
+
+          <div id="auditContent"></div>
+         </section> -->
+
+        <!-- SPINNER -->
+
+        <div id="spinner"
+             class="loader hidden">
+        </div>
+      
+
+    
+    
+    <div class="case-id-box">
+      <strong>Case ID:</strong>
+      <span id="caseId">-</span>
+    </div>
+    
+   </main>
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+          © <span id="currentYear"></span> MetLife Egypt
+        </p>
+
+        <p>
+            Glasses Eligibility Tool
+        </p>
+
+        <p>
+            Developed by Samy Deif
+        </p>
+
+    </footer>
+
+    <!-- Flatpickr -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+
+    <!-- Agent Login Popup -->
+
+<div id="agentModal" class="modal-overlay">
+
+  <div class="modal-box">
+
+    <img src="metlife_logo.jpg" class="modal-logo">
+    <p class="tool-version">
+       Version 1.0 | Internal Use Only
+       </p>
+
+    <h2>Agent Information</h2>
+
+    <label>
+      Agent Name
+      <input
+       type="text"
+       id="agentName"
+       maxlength="50"
+       autocomplete="off"
+       placeholder="Enter your name">
+    </label>
+
+    <label>
+      Department
+
+      <select id="agentDepartment">
+
+        <option value="">
+          Select Department
+        </option>
+
+        <option>
+          Customer Service
+        </option>
+
+        <option>
+          Claims
+        </option>
+
+    
+        <option>
+          Quality
+        </option>
+
+      </select>
+
+    </label>
+
+    <button id="saveAgentBtn">
+      Continue
     </button>
 
   </div>
-</header>
 
-  <main>
-    <section class="input-section">
-      <label id="policyLabel">📋 Policy Start Date:
-        <input type="date" id="policyStart">
-      </label>
-      <label id="cycleLabel">📅 Cycle Rule (years):
-        <select id="cycleRule">
-          <option value="1">1</option>
-          <option value="2">2</option>
-        </select>
-      </label>
-      <label id="lastLabel">👓 Last Glasses Date:
-        <input type="date" id="lastGlasses">
-      </label>
-      <div class="buttons">
-        <button id="checkBtn">✔️ CHECK</button>
-        <button id="resetBtn">🔄 RESET</button>
-      </div>
-    </section>
+ </div>
+ <script src="code.js"></script>
 
-    <section class="output-section" id="output"></section>
-      <div id="spinner" class="loader hidden"></div>
-    <div id="spinner" class="spinner hidden"></div>
-  </main>
-  <footer class="footer">
-   <p>MetLife Egypt | Internal Use Only</p>
-   <p>Version 1.0</p>
-  </footer>
-
-  <script src="code.js"></script>
 </body>
+
+
 </html>
