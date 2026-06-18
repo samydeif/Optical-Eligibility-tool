@@ -225,6 +225,9 @@ label {
   display: block;
   margin-bottom: 15px;
   font-weight: 600;
+  color: #554e4e;
+
+  
 }
 
 /* Inputs */
@@ -566,6 +569,7 @@ footer{
   margin-top:10px;
   font-size:14px;
   font-weight:600;
+  color: #554e4e;
 }
 
 .progress-container{
